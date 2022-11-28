@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  TriggerBot tb = TriggerBot();
+  TriggerBot tb;
   tb.activateBot();
 }
