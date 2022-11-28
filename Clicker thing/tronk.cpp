@@ -10,11 +10,28 @@ void TriggerBot::activateBot() {
 	COLORREF startPixel;
 	HDC desktop = CreateDCA("DISPLAY", NULL, NULL, NULL);
 	bool active = false;
+	//pixel
+	RECT rect;
+	if(GetWindowRect(hwnd, &rect)) {
+		int width = rect.right - rect.left;
+		int height = rect.bottom - rect.top;
+		
+		int xPos = width / 2;
+		int yPos = height / 2;
+	}
 
 	for (;;) {
 		while (checkKeyDown) {
 			if (!active) {
-				startPixel = getPixelValue();
+				startPixel = getPixelValue(desktop, xPos, yPos);
+				active = true;
+			} else {
+				if (startPixel != getPixelValue(desktop, xPos, yPos) {
+					click();
+					while (startPixel != getPixelValue(desktop, xPos, yPos) {
+						sleep(0.01);
+					}
+				}
 			}
 		}
 	}
@@ -42,6 +59,6 @@ void TriggerBot::click(INPUT ip) {
 	SendInput(1, &ip, sizeof(ip));
 }
 
-COLORREF TriggerBot::getPixelValue(HDC display) {
-	return GetPixel(display, 0, 0);
+COLORREF TriggerBot::getPixelValue(HDC display, xPos, yPos) {
+	return GetPixel(display, xPos, yPos);
 }
