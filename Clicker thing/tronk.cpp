@@ -25,6 +25,7 @@ void TriggerBot::activateBot() {
 	bool active = false;
 
 	for (;;) {
+		active = false;
 		while (checkKeyDown(0x50)) {
 			if (!active) {
 				startPixel = GetPixel(this->desktop, this->xPos, this->yPos);
