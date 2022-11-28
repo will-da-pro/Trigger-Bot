@@ -4,21 +4,25 @@
 
 using namespace std;
 
-void TriggerBot::activateBot() {
-	INPUT input = initInput();
-	COLORREF pixel;
-	COLORREF startPixel;
-	HDC desktop = CreateDCA("DISPLAY", NULL, NULL, NULL);
-	bool active = false;
+TriggerBot::TriggerBot() {
+	INPUT self->input = initInput();
+	HDC self->desktop = CreateDCA("DISPLAY", NULL, NULL, NULL);
+	
 	//pixel
 	RECT rect;
 	if(GetWindowRect(hwnd, &rect)) {
 		int width = rect.right - rect.left;
 		int height = rect.bottom - rect.top;
 		
-		int xPos = width / 2;
-		int yPos = height / 2;
+		int self->xPos = width / 2;
+		int self->yPos = height / 2;
 	}
+}
+
+void TriggerBot::activateBot() {
+	COLORREF pixel;
+	COLORREF startPixel;
+	bool active = false;
 
 	for (;;) {
 		while (checkKeyDown) {
