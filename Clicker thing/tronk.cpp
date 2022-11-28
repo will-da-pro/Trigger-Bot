@@ -7,12 +7,15 @@ using namespace std;
 void TriggerBot::activateBot() {
 	INPUT input = initInput();
 	COLORREF pixel;
+	COLORREF startPixel;
 	HDC desktop = CreateDCA("DISPLAY", NULL, NULL, NULL);
+	bool active = false;
 
 	for (;;) {
-
-		while(checkKeyDown) {
-		
+		while (checkKeyDown) {
+			if (!active) {
+				startPixel = getPixelValue();
+			}
 		}
 	}
 }
