@@ -23,12 +23,12 @@ void TriggerBot::activateBot() {
 	for (;;) {
 		while (checkKeyDown) {
 			if (!active) {
-				startPixel = getPixelValue(desktop, xPos, yPos);
+				startPixel = GetPixel(desktop, xPos, yPos);
 				active = true;
 			} else {
-				if (startPixel != getPixelValue(desktop, xPos, yPos) {
+				if (startPixel != GetPixel(desktop, xPos, yPos) {
 					click();
-					while (startPixel != getPixelValue(desktop, xPos, yPos) {
+					while (startPixel != GetPixel(desktop, xPos, yPos) {
 						sleep(0.01);
 					}
 				}
@@ -57,8 +57,4 @@ INPUT TriggerBot::initInput() {
 
 void TriggerBot::click(INPUT ip) {
 	SendInput(1, &ip, sizeof(ip));
-}
-
-COLORREF TriggerBot::getPixelValue(HDC display, xPos, yPos) {
-	return GetPixel(display, xPos, yPos);
 }
