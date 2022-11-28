@@ -5,8 +5,8 @@
 using namespace std;
 
 TriggerBot::TriggerBot() {
-	INPUT self->input = initInput();
-	HDC self->desktop = CreateDCA("DISPLAY", NULL, NULL, NULL);
+	this->input = initInput();
+	this->desktop = CreateDCA("DISPLAY", NULL, NULL, NULL);
 	
 	//pixel
 	RECT rect;
@@ -14,8 +14,8 @@ TriggerBot::TriggerBot() {
 		int width = rect.right - rect.left;
 		int height = rect.bottom - rect.top;
 		
-		int self->xPos = width / 2;
-		int self->yPos = height / 2;
+		this->xPos = width / 2;
+		this->yPos = height / 2;
 	}
 }
 
