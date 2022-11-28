@@ -25,14 +25,14 @@ void TriggerBot::activateBot() {
 	bool active = false;
 
 	for (;;) {
-		while (checkKeyDown) {
+		while (checkKeyDown(0x50)) {
 			if (!active) {
-				startPixel = GetPixel(desktop, xPos, yPos);
+				startPixel = GetPixel(this->desktop, this->xPos, this->yPos);
 				active = true;
 			} else {
-				if (startPixel != GetPixel(desktop, xPos, yPos) {
-					click();
-					while (startPixel != GetPixel(desktop, xPos, yPos) {
+				if (startPixel != GetPixel(this->desktop, this->xPos, this->yPos) {
+					click(this->input);
+					while (startPixel != GetPixel(this->desktop, this->xPos, this->yPos) {
 						sleep(0.01);
 					}
 				}
