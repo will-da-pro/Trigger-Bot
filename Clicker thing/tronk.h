@@ -9,6 +9,8 @@ public:
 	TriggerBot();
 	void activateBot();
 private:
+	HDC desktop;
+	INPUT input;
 	bool checkKeyDown(int key);
 	INPUT initInput();
 	void click(INPUT ip);
