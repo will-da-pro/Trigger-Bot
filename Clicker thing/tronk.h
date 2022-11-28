@@ -11,6 +11,9 @@ public:
 private:
 	HDC desktop;
 	INPUT input;
+	int xPos;
+	int yPos;
+	
 	bool checkKeyDown(int key);
 	INPUT initInput();
 	void click(INPUT ip);
