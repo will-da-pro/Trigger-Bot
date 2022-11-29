@@ -10,7 +10,7 @@ public:
 	void activateBot();
 private:
 	HDC desktop;
-	INPUT[2] input;
+	INPUT input[2];
 	int xPos;
 	int yPos;
 	
