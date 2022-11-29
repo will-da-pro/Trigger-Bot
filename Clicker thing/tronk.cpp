@@ -47,19 +47,17 @@ bool TriggerBot::checkKeyDown(int key) {
 }
 
 INPUT TriggerBot::initInput() {
-	INPUT ip;
+	INPUT Inputs[2] = {0};
+	
+	Inputs[0].type = INPUT_MOUSE;
+	Inputs[0].mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
 
-	ip.type = INPUT_MOUSE;
-	ip.mi.dx = 0;
-	ip.mi.dy = 0;
-	ip.mi.dwFlags = (MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP);
-	ip.mi.mouseData = 0;
-	ip.mi.dwExtraInfo = NULL;
-	ip.mi.time = 0;
+	Inputs[1].type = INPUT_MOUSE;
+	Inputs[1].mi.dwFlags = MOUSEEVENTF_LEFTUP;
 
-	return ip;
+	return Inputs;
 }
 
-void TriggerBot::click(INPUT ip) {
-	SendInput(1, &ip, sizeof(ip));
+void TriggerBot::click(INPUT Inputs) {
+	SendInput(2, Inputs, sizeof(INPUT));
 }
