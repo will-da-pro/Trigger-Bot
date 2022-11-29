@@ -7,20 +7,16 @@ using namespace std;
 TriggerBot::TriggerBot() {
 	this->desktop = CreateDCA("DISPLAY", NULL, NULL, NULL);
 	
-	
-	INPUT Inputs[2] = {0};
-	
-	Inputs[0].type = INPUT_MOUSE;
-	Inputs[0].mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+	this->input[0].type = INPUT_MOUSE;
+	this->input[0].mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
 
-	Inputs[1].type = INPUT_MOUSE;
-	Inputs[1].mi.dwFlags = MOUSEEVENTF_LEFTUP;
-	
-	this->input = Inputs;
+	this->input[1].type = INPUT_MOUSE;
+	this->input[1].mi.dwFlags = MOUSEEVENTF_LEFTUP;
 	
 	//pixel
 	RECT rect;
-	if(GetWindowRect(hwnd, &rect)) {
+	const HWND hDesktop = GetDesktopWindow();
+	if(GetWindowRect(hDesktop, &rect)) {
 		int width = rect.right - rect.left;
 		int height = rect.bottom - rect.top;
 		
@@ -33,19 +29,19 @@ void TriggerBot::activateBot() {
 	COLORREF pixel;
 	COLORREF startPixel;
 	bool active = false;
+	cout << "Active\n";
 
 	for (;;) {
 		active = false;
-		while (checkKeyDown(0x50)) {
+		while (checkKeyDown(0x54)) {
 			if (!active) {
 				startPixel = GetPixel(this->desktop, this->xPos, this->yPos);
 				active = true;
 			} else {
-				if (startPixel != GetPixel(this->desktop, this->xPos, this->yPos) {
+				if (startPixel != GetPixel(this->desktop, this->xPos, this->yPos)) {
+					cout << "click\n";
 					click(this->input);
-					while (startPixel != GetPixel(this->desktop, this->xPos, this->yPos) {
-						sleep(0.01);
-					}
+					while (startPixel != GetPixel(this->desktop, this->xPos, this->yPos)) {	}
 				}
 			}
 		}
@@ -56,6 +52,6 @@ bool TriggerBot::checkKeyDown(int key) {
 	return GetAsyncKeyState(key);
 }
 
-void TriggerBot::click(INPUT Inputs) {
+void TriggerBot::click(INPUT Inputs[]) {
 	SendInput(2, Inputs, sizeof(INPUT));
 }

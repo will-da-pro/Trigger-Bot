@@ -16,5 +16,5 @@ private:
 	
 	bool checkKeyDown(int key);
 	INPUT initInput();
-	void click(INPUT ip);
+	void click(INPUT Input[]);
 };
